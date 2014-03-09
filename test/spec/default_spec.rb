@@ -139,8 +139,6 @@ describe "strider::default" do
 				)
 			end
 
-			# TODO: create admin user
-
 		end
 
 		context "with a modified install directory" do
@@ -404,6 +402,29 @@ describe "strider::default" do
 
 			it "installs the named plugins" do
 				plugins.each { |plugin| assert_plugin_installed plugin }
+			end
+
+		end
+
+		context "configured with an admin user" do
+
+			let(:email) { "test@example.com" }
+			let(:password) { "passw0rd" }
+
+			let(:chef_run) do
+				ChefSpec::Runner.new(platform: platform, version: version) do |node|
+					node.set[:strider][:admin][:email] = email
+					node.set[:strider][:admin][:password] = password
+				end.converge(described_recipe)
+			end
+
+			it "creates an admin user account" do
+				command = "node bin/strider addUser --email #{email} --password #{password} --admin"
+				expect(chef_run).to run_execute(command).with(
+					cwd: INSTALL_DIRECTORY,
+					user: DEFAULT_USER,
+					group: DEFAULT_GROUP
+				)
 			end
 
 		end

@@ -115,3 +115,14 @@ service "strider" do
 	provider Chef::Provider::Service::Upstart
 	action [ :enable, :start ]
 end
+
+unless node[:strider][:admin].nil?
+	email = node[:strider][:admin][:email]
+	password = node[:strider][:admin][:password]
+	command = "node bin/strider addUser --email #{email} --password #{password} --admin"
+	execute command do
+		cwd install_directory
+		user strider_user
+		group strider_group
+	end
+end
