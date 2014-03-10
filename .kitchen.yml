@@ -14,4 +14,26 @@ suites:
       - recipe[mongodb::10gen_repo]
       - recipe[mongodb::default]
       - recipe[strider::default]
-    attributes:
+    attributes: {
+      nodejs: {
+        install_method: "package"
+      }
+    }
+
+  - name: production
+    run_list:
+      - recipe[mongodb::10gen_repo]
+      - recipe[mongodb::default]
+      - recipe[strider::default]
+    attributes: {
+      nodejs: {
+        install_method: "package"
+      },
+      strider: {
+        admin: {
+          email: "test@example.com",
+          password: "passw0rd"
+        },
+        port: 8080
+      }
+    }

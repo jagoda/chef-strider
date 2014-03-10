@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-sudo apt-get install -y curl >&2
+sudo apt-get install -y curl >/dev/null
 
 @test "strider code is present" {
 	[ -d "/opt/strider" ]
