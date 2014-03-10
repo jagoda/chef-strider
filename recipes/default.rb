@@ -90,13 +90,20 @@ template File.join(install_directory, "strider.conf") do
 	source "strider.conf"
 	owner strider_user
 	group strider_group
+
+	unless node[:ec2].nil? or node[:strider][:port].nil?
+		strider_url = "http://#{node[:ec2][:fqdn]}:#{node[:strider][:port]}/"
+	else
+		strider_url = node[:strider][:url]
+	end
+
 	variables(
 		:bitbucket => node[:strider][:bitbucket],
 		:data_directory => data_directory,
 		:database => node[:strider][:database],
 		:github => node[:strider][:github],
 		:port => node[:strider][:port],
-		:url => node[:strider][:url]
+		:url => strider_url
 	)
 end
 
