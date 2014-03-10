@@ -441,7 +441,7 @@ describe "strider::default" do
 
 			let(:chef_run) do
 				ChefSpec::Runner.new(platform: platform, version: version) do |node|
-					node.set[:ec2][:fqdn] = domain
+					node.set[:ec2][:public_hostname] = domain
 					node.set[:strider][:port] = port
 				end.converge(described_recipe)
 			end

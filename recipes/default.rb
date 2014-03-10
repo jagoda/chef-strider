@@ -96,7 +96,7 @@ template File.join(install_directory, "strider.conf") do
 	group strider_group
 
 	unless node[:ec2].nil? or node[:strider][:port].nil?
-		strider_url = "http://#{node[:ec2][:fqdn]}:#{node[:strider][:port]}/"
+		strider_url = "http://#{node[:ec2][:public_hostname]}:#{node[:strider][:port]}/"
 	else
 		strider_url = node[:strider][:url]
 	end
