@@ -71,6 +71,11 @@ describe "strider::default" do
 			end
 
 			it "installs Node.JS" do
+				# FIXME: need to guarantee that Node can build native extensions
+				# (seems like a bug in the 'nodejs' cookbook.
+				expect(chef_run).to install_package("python")
+				expect(chef_run).to install_package("g++")
+				expect(chef_run).to install_package("make")
 				expect(chef_run).to include_recipe("nodejs")
 			end
 

@@ -1,4 +1,8 @@
-include_recipe "git"
+package "git"
+package "g++"
+package "make"
+package "python"
+
 include_recipe "nodejs"
 
 strider_user = node[:strider][:user]

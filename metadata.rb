@@ -5,5 +5,4 @@ license "MIT"
 maintainer "Jeff Jagoda"
 maintainer_email "jeffrey.jagoda@gmail.com"
 
-depends "git"
 depends "nodejs"
