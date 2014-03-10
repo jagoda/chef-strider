@@ -434,24 +434,6 @@ describe "strider::default" do
 
 		end
 
-		context "running with knife ec2" do
-
-			let(:port) { 8080 }
-			let(:domain) { "ec2.example.com" }
-
-			let(:chef_run) do
-				ChefSpec::Runner.new(platform: platform, version: version) do |node|
-					node.set[:ec2][:public_hostname] = domain
-					node.set[:strider][:port] = port
-				end.converge(described_recipe)
-			end
-
-			it "sets the server URL based on the EC2 domain name and port values" do
-				validate_config(CONFIG_PATH, "export SERVER_NAME=\"http://#{domain}:#{port}/\"")
-			end
-
-		end
-
 	end
 
 end
