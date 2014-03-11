@@ -1,7 +1,9 @@
 require "foodcritic"
 require "rspec/core/rake_task"
 
-task :default => [ :foodcritic, :spec, "kitchen:all" ]
+task :default => [ :foodcritic, :spec ]
+task :integration => [ :default, "kitchen:all" ]
+
 FoodCritic::Rake::LintTask.new
 RSpec::Core::RakeTask.new(:spec) do |task|
 	task.rspec_opts = "--color test/spec"

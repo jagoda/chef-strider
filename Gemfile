@@ -2,8 +2,11 @@ source "https://rubygems.org"
 
 gem "berkshelf"
 gem "chefspec"
-gem "foodcritic"
+gem "foodcritic", "~> 3.0"
 gem "rake"
 gem "rspec"
-gem 'test-kitchen'
-gem 'kitchen-vagrant'
+
+group :integration do
+	gem 'test-kitchen'
+	gem 'kitchen-vagrant'
+end
