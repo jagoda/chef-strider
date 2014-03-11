@@ -1,6 +1,8 @@
 Strider Cookbook
 ================
 
+[![Build Status](https://travis-ci.org/jagoda/chef-strider.png?branch=master)](https://travis-ci.org/jagoda/chef-strider)
+
 Installs the [Strider CD][strider] server.
 
 ## Requirements
